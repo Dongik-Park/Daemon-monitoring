@@ -1,0 +1,50 @@
+
+.error {
+	text-align:center;
+	vertical-align:middle;
+	width:40px;
+	height:40px; 
+	border-radius:7px;
+	font-size:18px;
+	font-weight:bold;
+	margin:5px;
+    background-color: red;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 3s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 3s;
+    animation-iteration-count:infinite
+}
+
+.errorRow {
+	background:#d40a3a; 
+	color:#F8E6E0; 
+	font-weight:bold;
+	font-size: 17px;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0%   {background-color: #FF0000; color:white;}
+    12%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    25%  {background-color: #FF0000; color:white}
+    37%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    50%  {background-color: #FF0000; color:white}
+    62%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    74%  {background-color: #FF0000; color:white}
+    86%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    98%  {background-color: #FF0000; color:white}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {background-color: #FF0000; color:white;}
+    12%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    25%  {background-color: #FF0000; color:white}
+    37%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    50%  {background-color: #FF0000; color:white}
+    62%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    74%  {background-color: #FF0000; color:white}
+    86%  {background-color: white; border-width:2px; border-color:#FF0000; color:#FF0000}
+    98%  {background-color: #FF0000; color:white}
+}

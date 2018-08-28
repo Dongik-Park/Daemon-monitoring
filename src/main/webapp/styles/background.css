@@ -1,0 +1,12 @@
+body {
+  background-color: white;
+  /*background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/GGVEfkY/time-lapse-of-the-sun-setting-over-the-salar-de-uyuni-in-southern-bolivia_njzq7rxk__F0000.png");*/
+  /*background-image: url("https://italianrentalblog.files.wordpress.com/2013/04/163023724.jpg");*/
+  /*background-image: url("https://images.freecreatives.com/wp-content/uploads/2016/04/Twitter-Black-Web-Background.jpg");*/
+  
+  background-image: url("https://columbiaairport.com/wp-content/uploads/2015/12/CAE-Website-Full-Background-Texture1902x1200-9.jpg");
+  background-size:cover;                      
+   background-repeat:no-repeat;
+   background-position:center;             
+   height: 100%;
+}

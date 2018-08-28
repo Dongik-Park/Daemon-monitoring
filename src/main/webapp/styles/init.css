@@ -1,0 +1,12 @@
+body {
+	/* 기본 폰트 적용 */
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size : 15px;
+	/* 배경 이미지 선택 및 중앙 배치 초기화 */
+	background-color: white;
+    background-image: url("https://columbiaairport.com/wp-content/uploads/2015/12/CAE-Website-Full-Background-Texture1902x1200-9.jpg");
+    background-size:cover;                      
+    background-repeat:no-repeat;
+    background-position:center;             
+    height: 100%;
+}

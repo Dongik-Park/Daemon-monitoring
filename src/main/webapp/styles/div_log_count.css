@@ -1,0 +1,8 @@
+/* 한줄에 중앙 정렬 형태*/
+.normalCount {
+	margin:50px;
+	display:inline-block;
+	float:none;
+	text-align:left;
+	margin-right:-4px
+}
