@@ -6,6 +6,7 @@
 Provides a Web dashboard to save the resources required to detect the status of delivery and log collection server.
 
 ## Getting Started
+<hr>
 
 운영 서버의 로그 데이터 수집을 위해 logstash와 filebeat를 활용하였고, Spring boot로 서버를 구축하였습니다. 
 
@@ -41,6 +42,7 @@ I used logstash and filebeat to collect the log data of the delivery operating s
 
 
 ## Running the tests
+<hr>
 
 end-end 흐름은 다음과 같습니다.
 ```
@@ -76,7 +78,8 @@ Filebeat로부터 수집된 데이터를 내재화하고 Spring 서버로 데이
 
 run logstash.conf file internalize filebeats data and send to Spring web server.
 
-> logstash -f logstash.conf 
+ >logstash -f logstash.conf 
+
 ```
 # logstash.conf example
 
@@ -103,6 +106,101 @@ output {
 }
 ```
 references : [**Logstash config guide**](https://www.elastic.co/guide/en/logstash/current/config-examples.html)
+
+### Spring sever business logic
+
+1. Collect data & DB transaction
+
+logstash.conf에 명시된 url에 대해 http 요청을 보낸다. 아래는 해당 요청을 담당하는 Controller이다.
+
+```java
+// MonitoringController.java
+
+@RequestMapping(value = "/logging", method = RequestMethod.POST)
+@ResponseBody
+public LogRequest Logging(@RequestBody LogRequest logRequest){
+    Daemon result = monitoringService.logging(logRequest); 
+    if(result != null) {
+        // notify to browser clients
+        EchoHandler.notifyToUser(result);
+    }
+    return logRequest;
+}
+```
+
+해당 요청을 처리하기 위한 서비스(Service) 로직은 다음과 같다.
+
+```java
+/**
+    * Logstash로부터 전송받은 로그 정보에 대해 에러 여부 판별 및 로그와 데몬에 대한 transaction 수행
+    * @param logRequest 에러 여부를 판별한 로그 정보
+    * @return 에러 존재 여부
+    */
+public Daemon logging(LogRequest logRequest) {
+    // 1. 로그에 포함된 데몬 정보 추출
+    //    Get the daemon information contained in the log
+
+    // 2. LogRequest 객체의 timestamp를 통해 filebeat의 현재 시간 객체 생성
+    //    Create the current time object of the filebeat through the timestamp of the LogRequest object
+    
+    // 3. Date 객체 생성 및 포맷 생성
+    //    Create Date object and generate date format
+
+    // 4. 오차 버퍼 지정 및 에러 판별
+    //    Error buffer specification and error determination
+    
+    // 5. log에 ERROR 정보가 있을 경우 로그 추가
+    //    Add log when ERROR information is in log
+        
+        // 5-1. 로그 추가 트랜잭션 ( ErrorType : INTERNAL )
+        //      Log add transaction
+        
+        // 5-2. 정상 상태인 경우 상테 변경
+        //      Change status
+
+        // 5-3. 에러 로그 푸쉬
+        //      Error log push
+    
+    // 6. log가 정상적으로 축적되었을 경우
+    //    If log is accumulated normally
+    
+        // 6-1. 에러 상태인 경우 정상 동작
+        //      Change status
+        
+        // 6-2. 데몬 정보 update 및 결과 지정
+        //      Updating Daemon Information and Specifying Results
+    
+}
+```
+
+2. Moniotring process
+
+DB에 축적된 데이터들을 모니터링 하기 위해 [크론식(Cron expression)](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm)을 스케줄 annotation(@Scheduled)을 활용하여 주기적으로 메소드를 호출시켰다.
+
+```java 
+// MonitoringService.java
+
+@Scheduled(cron = "*/60 * * * * *")
+public void monitoringScheduler() {
+    // 1. 데몬 정보 추출 
+    //    Load daemon information
+    
+    // 2. 각 데몬들의 정보에서 로그가 정상적으로 축적되었는지 확인 
+    //    Check whether the logs are accumulated properly from the information of each daemon
+
+    // 3. 현재 시간을 기준으로 Cron 식에 기반하여 데몬이 정상적으로 동작하였는지 체크 
+    //    check whether the daemon is operating normally based on the Cron expression 
+            
+        // 3-1.에러가 발생하였을 경우 데몬 상태 변경, 에러 발생 및 로그 추가 트랜잭션
+        //       If an error occurs, change the daemon status, generate an error, and add log transaction
+        
+    // 4. 데몬의 상태 변화가 있었을 경우
+    //    If daemon status changes
+
+        // 4-1. 웹 페이지 갱신 및 broadcast
+        //        Update webpage & broadcast
+}
+```
 
 ## Deployment
 
