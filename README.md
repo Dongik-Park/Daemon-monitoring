@@ -35,9 +35,7 @@ I used logstash and filebeat to collect the log data of the delivery operating s
     > * Download [**installation file**](https://www.elastic.co/downloads/logstash) and unzip
     > * Setting logstash.conf file
     > * Start the daemon by running ``` logstash -f logstash.conf  ```
-    
     > * Dive into the [**getting started guide**](https://www.elastic.co/webinars/getting-started-logstash?baymax=default&elektra=docs&storm=top-video)
-
 
 
 ## Running the tests
