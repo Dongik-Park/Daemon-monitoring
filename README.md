@@ -6,7 +6,6 @@
 Provides a Web dashboard to save the resources required to detect the status of delivery and log collection server.
 
 ## Getting Started
-<hr>
 
 운영 서버의 로그 데이터 수집을 위해 logstash와 filebeat를 활용하였고, Spring boot로 서버를 구축하였습니다. 
 
@@ -42,7 +41,6 @@ I used logstash and filebeat to collect the log data of the delivery operating s
 
 
 ## Running the tests
-<hr>
 
 end-end 흐름은 다음과 같습니다.
 ```
