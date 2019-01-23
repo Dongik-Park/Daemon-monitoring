@@ -107,7 +107,7 @@ references : [**Logstash config guide**](https://www.elastic.co/guide/en/logstas
 
 1. Collect data & DB transaction
 
-logstash.conf에 명시된 url에 대해 http 요청을 보낸다. 아래는 해당 요청을 담당하는 Controller이다.
+logstash.conf에 명시된 url로 내재화된 데이터를 포함하여 http 요청을 보냅니다. 아래는 해당 요청을 담당하는 Controller입니다.
 
 ```java
 // MonitoringController.java
@@ -124,7 +124,7 @@ public LogRequest Logging(@RequestBody LogRequest logRequest){
 }
 ```
 
-해당 요청을 처리하기 위한 서비스(Service) 로직은 다음과 같다.
+해당 요청을 처리하기 위한 WAS의 요청 처리 서비스(Service) 로직은 다음과 같습니다.
 
 ```java
 /**
@@ -171,7 +171,7 @@ public Daemon logging(LogRequest logRequest) {
 
 2. Moniotring process
 
-DB에 축적된 데이터들을 모니터링 하기 위해 [크론식(Cron expression)](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm)을 스케줄 annotation(@Scheduled)을 활용하여 주기적으로 메소드를 호출시켰다.
+DB에 축적된 데이터들을 모니터링 하기 위해 [크론식(Cron expression)](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm)을 스케줄 annotation(@Scheduled)을 활용하여 주기적으로 메소드를 호출시켜 DB 데이터를 모니터링 하였습니다.
 
 ```java 
 // MonitoringService.java
