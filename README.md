@@ -217,9 +217,3 @@ This project was deployed by war file.
 * **Dongik Park** 
 
 Personal project.
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
